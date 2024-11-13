@@ -1,0 +1,93 @@
+/* Estilo del contenedor general */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+/* Encabezado */
+.header {
+    background-color: #00796b;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de bienvenida con imagen y botón */
+.welcome-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.map-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.text-content h1 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 10px;
+}
+
+.text-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+/* Estilo de botones */
+.button {
+    background-color: #ccc;
+    color: #666;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: #00796b;
+    color: white;
+}
+
+/* Sección de análisis de delitos */
+.analysis-section {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 10px;
+}
