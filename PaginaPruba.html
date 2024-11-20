@@ -1,17 +1,66 @@
 <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="Prueba" content="width=device-width, initial-scale=1.0">
-        <title>Botón con CSS Externo</title>
-        <link rel="Picame" href="styles.css">
-    </head>
-    <body>
-       
-        <h1 id="cambio">cola</h1>
-                <button  onclick="fetchData()"  class="custom-button">Picame</button>
-                <script src="pruebaAgarrar.js"></script>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad Delictiva Oaxaca</title>
+    <link rel="stylesheet" href="PaginaPrueba.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Encabezado -->
+        <header>
+            <h1 id="cambio">DATOS DELICTIVOS</h1>
+        </header>
+        
+        <!-- Contenido principal -->
+        <section class="content">
+            <p>
+                Gracias a los informes brindados por la fiscalía general del estado de Oaxaca (FGEO), 
+                obtuvimos la incidencia delictiva estatal que podrás consultar de manera sencilla para 
+                que puedas estar informado y al tanto de lo que sucede en el estado.
+            </p>
+            <p>
+                Recuerda que podrás denunciar los delitos que se hayan cometido a tu alrededor. 
+                Solo necesitas llamar a las autoridades competentes para hacer lo correcto.
+            </p>
+            
+            <!-- Botón de simulación -->
+            <button onclick="fetchData()" class="custom-button">SIMULAR</button>
+            
+            <!-- Espacio para mostrar resultados -->
+            <div id="resultado" class="result-box">Información no cargada aún</div>
+        </section>
+        
+        <!-- Pie de página -->
+        <footer>
+            <div class="footer-content">
+                <!-- Sección de Emergencia con el Logo y Número -->
+                <div class="emergency">
+                    <img src="LOGO.png" alt="Logo de Riesgo Cero Oaxaca" class="logo">
+                    <div class="number">
+                        <h2>911</h2>
+                        <p>NÚMERO ÚNICO DE EMERGENCIAS</p>
+                    </div>
+                </div>
+                
+                <!-- Información de contacto y enlaces -->
+                <div class="footer-info">
+                    <address>
+                        <p>Av. Calicanto 104-106, El Bosque Nte., 71244 Santa Lucía del Camino, Oax.</p>
+                        <p>Teléfono: <a href="tel:+529511417119">951 141 71 19</a> | Correo: <a href="mailto:contacto.riesgoceroOaxaca@gmail.com">contacto.riesgoceroOaxaca@gmail.com</a></p>
+                    </address>
+                    <nav>
+                        <a href="#">Aviso de Privacidad</a> | 
+                        <a href="#">FGEO | RCO</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
     
-    </body>
-    </html>
-    
+    <!-- Conexión al archivo JavaScript -->
+    <script src="pruebaAgarrar.js"></script>
+</body>
+</html>
