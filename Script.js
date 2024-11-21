@@ -7,3 +7,6 @@ document.getElementById("consultarBoton").addEventListener("click", function() {
 document.getElementById("leerMasBoton").addEventListener("click", function() {
     alert("Mostrando más información...");
 });
+
+// Funcion para subir archivo jason
+document.getElementById()

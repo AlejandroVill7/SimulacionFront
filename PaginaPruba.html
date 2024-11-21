@@ -24,12 +24,35 @@
                 Recuerda que podrás denunciar los delitos que se hayan cometido a tu alrededor. 
                 Solo necesitas llamar a las autoridades competentes para hacer lo correcto.
             </p>
+                <p><b>El mes con mayor incidencia:</b> Este es el mes proyectado con mayor incidencia delictiva.</p>
+                <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito.</p>
+                <p><b>Municipio mas conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyeccion.</p>
+            
             
             <!-- Botón de simulación -->
             <button onclick="fetchData()" class="custom-button">SIMULAR</button>
+
             
+        <!-- Botón para subir archivos JSON -->
+        <div class="boton">
+            <label for="fileInput" class="button">Seleccionar archivo JSON</label>
+            <input type="file" id="fileInput" accept=".json" style="display: block;">
+            
+            <!--<button class="button" onclick="leerJSON()">Subir archivo</button> -->
+        
+            <!-- Área para mostrar el contenido del archivo JSON -->
+            <div id="jsonContent" style="margin-top: 20px;"></div>
+
+            
+        </div>
+
+          <!-- Botón para regresar a la pagina anterior-->
+            <a href="Index.html" class="button">Regresar</a>
+
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
+
+
         </section>
         
         <!-- Pie de página -->

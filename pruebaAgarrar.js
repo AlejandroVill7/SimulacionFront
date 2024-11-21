@@ -17,6 +17,18 @@ async function fetchData() {
 
         // Mostrar datos en la interfaz
         cambioElement.textContent = 'Datos cargados exitosamente';
+        function obtenerNombreMes(numeroMes){
+            const meses = [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Seotiembre", "Octubre", "Noviembre", "Diciembre"
+            ];
+            const indice = parseInt(numeroMes, 10) - 1;
+
+            if(indice >= 0 && indice < 12){
+                return meses[indice];
+            }else{
+                return "Numero de mes no valido"
+            }
+        }
         resultadoElement.innerHTML = `
             <p><strong>Mes con mayor incidencia delictiva:</strong> ${data.mostLikelyMonths}</p>
             <p><strong>Tasa de investigación:</strong> ${data.averageResearchRate.toFixed(2)}</p>
