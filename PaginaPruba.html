@@ -34,25 +34,30 @@
 
             <!-- BOTON NUEVO para enviar el archivo-->
             <!-- Botón para subir archivos JSON -->
+            
             <form id="uploadForm">
                 <div class="boton">
-                <label for="fileInput" class="button">Seleccionar archivo JSON</label>
+                <h3>Importar archivo json</h3>
+                <p></p>
                 <input type="file" id="fileInput" name="file" accept=".json" required>
                 </div>
-                <button type="button" class="button" id="uploadButton">Enviar archivo</button>
-            </form>
+                <p></p>
+                <button type="button" class="custom-button" id="uploadButton">ENVIAR ARCHIVO</button>
+                </form>
+
             <div id="uploadResult" style="margin-top: 20px;"></div>
 
             <!-- Área para mostrar el contenido del archivo JSON -->
             <div id="jsonContent" style="margin-top: 20px;"></div>
-            <a href="Index.html" class="button">Regresar</a>
-        </div>
-        <!-- Botón para regresar a la pagina anterior-->
             
+            <!-- Botón para regresar a la pagina anterior-->
+            <a href="Index.html" class="red-button">Regresar</a>
 
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
 
+
+        </div>
         </section>
         
         <!-- Pie de página -->
@@ -85,5 +90,6 @@
     
     <!-- Conexión al archivo JavaScript -->
     <script src="pruebaAgarrar.js"></script>
+    
 </body>
 </html>
