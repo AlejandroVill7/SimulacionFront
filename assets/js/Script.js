@@ -41,7 +41,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         const result = await response.json();
         uploadResultElement.innerHTML = `
             <p>Archivo subido con éxito.</p>
-            <p><strong>Mensaje del servidor:</strong> ${result.message}</p>
+            <p><strong>Mensaje del servidor:</strong>${result.message}</p>
         `;
     } catch (error) {
         console.error('Error:', error);

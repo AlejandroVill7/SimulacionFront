@@ -28,11 +28,12 @@ async function fetchData() {
 
         // Mostrar datos en la interfaz
         cambioElement.textContent = 'Datos cargados exitosamente';
-        const mesNombre = obtenerNombreMes(data.mostLikelyMonths); // Convertir número a nombre del mes
+        const mesNombre =obtenerNombreMes(data.mostLikelyMonths); // Convertir número a nombre del mes
         resultadoElement.innerHTML = `
             <p><strong>Mes con mayor incidencia delictiva:</strong> ${mesNombre}</p>
             <p><strong>Tasa de investigación:</strong> ${data.averageResearchRate.toFixed(2)}</p>
             <p><strong>Municipio más conflictivo:</strong> ${data.mostLikelyMunicipality}</p>
+             <p><strong>Ano:</strong> ${data.ano}</p>
         `;
     } catch (error) {
         // Manejo de errores
