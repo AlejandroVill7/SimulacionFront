@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad Delictiva Oaxaca</title>
-    <link rel="stylesheet" href="PaginaPrueba.css">
+    <link rel="stylesheet" href="assets/css/PaginaPrueba.css">
 </head>
 <body>
     <div class="container">
@@ -24,40 +24,36 @@
                 Recuerda que podrás denunciar los delitos que se hayan cometido a tu alrededor. 
                 Solo necesitas llamar a las autoridades competentes para hacer lo correcto.
             </p>
-            <p></p>
             <p><b>El mes con mayor incidencia:</b> Este es el mes proyectado con mayor incidencia delictiva.</p>
             <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito.</p>
-            <p><b>Municipio mas conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyeccion.</p>
+            <p><b>Municipio más conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyección.</p>
 
             <!-- Botón de simulación -->
-            <button onclick="fetchData()" class="custom-button">SIMULAR</button>
+            <div class="centered-button">
+                <button onclick="fetchData()" class="custom-button">SIMULAR</button>
+            </div>
 
-            <!-- BOTON NUEVO para enviar el archivo-->
-            <!-- Botón para subir archivos JSON -->
-            
+            <!-- Sección de botones para subir archivos -->
+            <h3>Importar Archivo json</h3>
             <form id="uploadForm">
-                <div class="boton">
-                <h3>Importar archivo json</h3>
-                <p></p>
-                <input type="file" id="fileInput" name="file" accept=".json" required>
+                <div class="form-group">
+                    <input type="file" id="fileInput" name="file" accept=".json" class="custom-button" required>
                 </div>
                 <p></p>
-                <button type="button" class="custom-button" id="uploadButton">ENVIAR ARCHIVO</button>
-                </form>
-
-            <div id="uploadResult" style="margin-top: 20px;"></div>
+                <div class="form-group">
+                    <button type="button" class="custom-button" id="uploadButton">Enviar archivo</button>
+                </div>
+            </form>
 
             <!-- Área para mostrar el contenido del archivo JSON -->
+            <div id="uploadResult" style="margin-top: 20px;"></div>
             <div id="jsonContent" style="margin-top: 20px;"></div>
-            
-            <!-- Botón para regresar a la pagina anterior-->
-            <a href="Index.html" class="red-button">Regresar</a>
+
+            <!-- Botón para regresar -->
+            <a href="Index.html" class="red-button">REGRESAR</a>
 
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
-
-
-        </div>
         </section>
         
         <!-- Pie de página -->
@@ -65,7 +61,7 @@
             <div class="footer-content">
                 <!-- Sección de Emergencia con el Logo y Número -->
                 <div class="emergency">
-                    <img src="LOGO.png" alt="Logo de Riesgo Cero Oaxaca" class="logo">
+                    <img src="assets/images/LOGO.png" alt="Logo de Riesgo Cero Oaxaca" class="logo">
                     <div class="number">
                         <h2>911</h2>
                         <p>NÚMERO ÚNICO DE EMERGENCIAS</p>
@@ -85,11 +81,10 @@
                 </div>
             </div>
         </footer>
-        
     </div>
     
     <!-- Conexión al archivo JavaScript -->
-    <script src="pruebaAgarrar.js"></script>
-    
+    <script src="assets/js/pruebaAgarrar.js"></script>
 </body>
 </html>
+

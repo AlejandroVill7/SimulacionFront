@@ -1,90 +1,54 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad Delictiva Oaxaca</title>
-    <link rel="stylesheet" href="PaginaPrueba.css">
+    <title>RiesgoCero en Oaxaca</title>
+    <!-- Vinculación del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/Styles.css">
+
 </head>
+<!-- Vinculo con Js -->
+<script src="assets/js/Script.js"></script>
 <body>
-    <div class="container">
-        <!-- Encabezado -->
-        <header>
-            <h1 id="cambio">DATOS DELICTIVOS</h1>
-        </header>
-        
-        <!-- Contenido principal -->
-        <section class="content">
-            <p>
-                Gracias a los informes brindados por la fiscalía general del estado de Oaxaca (FGEO), 
-                obtuvimos la incidencia delictiva estatal que podrás consultar de manera sencilla para 
-                que puedas estar informado y al tanto de lo que sucede en el estado.
-            </p>
-            <p>
-                Recuerda que podrás denunciar los delitos que se hayan cometido a tu alrededor. 
-                Solo necesitas llamar a las autoridades competentes para hacer lo correcto.
-            </p>
-            <p><b>El mes con mayor incidencia:</b> Este es el mes proyectado con mayor incidencia delictiva.</p>
-            <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito.</p>
-            <p><b>Municipio más conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyección.</p>
 
-            <!-- Botón de simulación -->
-            <div class="centered-button">
-                <button onclick="fetchData()" class="custom-button">SIMULAR</button>
-            </div>
-
-            <!-- Sección de botones para subir archivos -->
-            <h2>Seleccionar</h2>
-            <form id="uploadForm">
-                <div class="form-group">
-                    <label for="fileInput" class="file-button">Elegir archivo JSON</label>
-                    <input type="file" id="fileInput" name="file" accept=".json" required>
-                </div>
-                <div class="form-group">
-                    <button type="button" class="file-button" id="uploadButton">Enviar archivo</button>
-                </div>
-            </form>
-
-            <!-- Área para mostrar el contenido del archivo JSON -->
-            <div id="uploadResult" style="margin-top: 20px;"></div>
-            <div id="jsonContent" style="margin-top: 20px;"></div>
-
-            <!-- Botón para regresar -->
-            <a href="Index.html" class="red-button">REGRESAR</a>
-
-            <!-- Espacio para mostrar resultados -->
-            <div id="resultado" class="result-box">Información no cargada aún</div>
-        </section>
-        
-        <!-- Pie de página -->
-        <footer>
-            <div class="footer-content">
-                <!-- Sección de Emergencia con el Logo y Número -->
-                <div class="emergency">
-                    <img src="LOGO.png" alt="Logo de Riesgo Cero Oaxaca" class="logo">
-                    <div class="number">
-                        <h2>911</h2>
-                        <p>NÚMERO ÚNICO DE EMERGENCIAS</p>
-                    </div>
-                </div>
-                
-                <!-- Información de contacto y enlaces -->
-                <div class="footer-info">
-                    <address>
-                        <p>Av. Calicanto 104-106, El Bosque Nte., 71244 Santa Lucía del Camino, Oax.</p>
-                        <p>Teléfono: <a href="tel:+529511417119">951 141 71 19</a> | Correo: <a href="mailto:contacto.riesgoceroOaxaca@gmail.com">contacto.riesgoceroOaxaca@gmail.com</a></p>
-                    </address>
-                    <nav>
-                        <a href="#">Aviso de Privacidad</a> | 
-                        <a href="#">FGEO | RCO</a>
-                    </nav>
-                </div>
-            </div>
-        </footer>
+    <!-- Encabezado -->
+    <div class="header">
+        ACTIVIDAD DELICTIVA OAXACA
     </div>
-    
-    <!-- Conexión al archivo JavaScript -->
-    <script src="pruebaAgarrar.js"></script>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sección de bienvenida con imagen y botón -->
+        <div class="welcome-section">
+            <img src="assets/images/mapa.jpg" alt="Mapa de RiesgoCero" class="map-image">
+            <div class="text-content">
+                <h1>RiesgoCero en Oaxaca</h1>
+                <p>Bienvenido a RiesgoCero Oaxaca, un sistema de análisis y simulación de incidencia delictiva en los municipios de Oaxaca. Esta plataforma permite explorar y comprender patrones de criminalidad a lo largo del tiempo, proyectando posibles escenarios mediante el metodo de Monte Carlo. Usando datos historicos, identificamos los municipios y meses de mayor riesgo, proporcionando a las autoridades y al publico en general una herramienta de apoyo para la planificación de politicas de seguridad y la prevencion de delito.</p>
+                <a href="PaginaPruba.html" class="button">CONSULTAR</a>
+            </div>
+        </div>
+                
+        <!-- Sección de análisis de delitos -->
+        <div class="analysis-section">
+            <h2>Número de delitos mensualmente</h2>
+            <p>
+                18 552 delitos por cada 100 000 habitantes durante 2021, en Oaxaca. 16.1% delos delitos con la víctima presente involucró algún tipo de agresión De los 528 522 delitos estimados, en 74.8% de los casos la víctima manifestó haber sufrido un daño.</p> 
+            <a href="leerMas.html" class="button">Leer más...</a>
+        </div>
+
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer">
+        <p>Av. Calicanto 104-106, El Bosque Nte., 71244 Santa Lucía del Camino, Oax.</p>
+        <p>Teléfono: 951 141 71 19 | Correo: contacto.riesgoceroOaxaca@gmail.com</p>
+            <p>
+                <a href="https://youtu.be/ekr2nIex040?si=MUBPLzfcW94G1ANW" target="_blank" class="privacy-link">Aviso de Privacidad</a>
+            </p>
+        <a href="#">FGEO | RCO</a>
+        <p></p>
+        <img src="assets/images/LOGO.png" alt="Logo" class="logo">
+    </div>
 </body>
 </html>
-
