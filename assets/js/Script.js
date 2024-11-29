@@ -28,7 +28,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
 
     try {
         // Realizar la solicitud POST
-        const response = await fetch('http://localhost:3200/api/v2/generalSimulation/upload-json', {
+        const response = await fetch('http://localhost:3200/api/upload/json', {
             method: 'POST',
             body: formData
         });

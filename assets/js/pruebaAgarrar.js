@@ -7,7 +7,7 @@ async function fetchData() {
 
     try {
         // Llamada a la API
-        const response = await fetch('http://localhost:3200/api/v2/generalSimulation');
+        const response = await fetch('http://localhost:3200/api/Simulation/one-year');
         if (!response.ok) {
             throw new Error('Error al obtener datos');
         }
@@ -60,7 +60,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
 
     try {
         // Realizar la solicitud POST
-        const response = await fetch('http://localhost:3200/api/v2/generalSimulation/upload-json', {
+        const response = await fetch('http://localhost:3200/api/upload/json', {
             method: 'POST',
             body: formData
         });
