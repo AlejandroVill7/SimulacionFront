@@ -38,7 +38,7 @@ async function fetchData() {
     } catch (error) {
         // Manejo de errores
         console.error('Error:', error);
-        cambioElement.textContent = 'Error al cargar datos';
+        cambioElement.textContent = '...';
     }
 
 }
@@ -47,29 +47,41 @@ async function fetchData() {
 //Agregado nuevo para la grafica
 // No mover, es para la grafica 
 const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-const tasasInvestigacion = [25, 30, 15, 40, 20, 25, 50, 35, 60, 45, 55, 70, 65]; // Ejemplo de tasas, si quieren valor más específicos pues le mueven pero creo que está bien 
+const tasasInvestigacion = [25, 30, 15, 40, 20, 25, 50, 35, 60, 45, 55, 70]; // Ejemplo de tasas para el primer dataset
+const tasasResolucion = [20, 25, 10, 35, 18, 22, 45, 30, 55, 40, 50, 65]; // Ejemplo de tasas para el segundo dataset
 
 //agregado
-// Aqui hace eso de crear la grafica, va a ser de barras si quieren de puntos cambien el "type:bar"
+// Aqui hace eso de crear la grafica, ahora con líneas y áreas coloreadas
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("investigationChart").getContext("2d");
     const investigationChart = new Chart(ctx, {
-        type: "bar", 
+        type: "line", 
         data: {
             labels: meses, // Eje X
-            datasets: [{
-                label: "Tasa de investigación (%)", //Nombre ese
-                data: tasasInvestigacion, // Eje Y
-                backgroundColor: "rgba(0, 123, 255, 0.5)", // Color de las barras si no les gusta azul ponganle otro pero cuidado de mover mucho o se muere 
-                borderColor: "rgba(0, 123, 255, 1)", // Aqui igual peroes el color del borde de las barras
-                borderWidth: 1 
-            }]
+            datasets: [
+                {
+                    label: "Tasa de Investigacion Actual (%)", // Primera línea
+                    data: tasasInvestigacion, // Datos para la primera línea
+                    backgroundColor: "rgba(0, 123, 255, 0.2)", // Color del área debajo de la línea
+                    borderColor: "rgb(0, 121, 107)", // Color de la línea
+                    borderWidth: 3, // Grosor de la línea
+                    fill: false // Rellenar el área debajo de la línea
+                },
+                {
+                    label: "Tasa de investigacion proyectada(%)", // Segunda línea
+                    data: tasasResolucion, // Datos para la segunda línea
+                    backgroundColor: "rgba(255, 99, 132, 0.2)", // Color del área debajo de la línea
+                    borderColor: "rgba(255, 99, 132, 1)", // Color de la línea
+                    borderWidth: 3, // Grosor de la línea
+                    fill: false // Rellenar el área debajo de la línea
+                }
+            ]
         },
         options: {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
+                    position: 'top', // Posición de la leyenda
                 },
             },
             scales: {
@@ -83,13 +95,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: "Tasa de Investigación (%)", // Título del eje Y
+                        text: "Tasa (%)", // Título del eje Y
                     }
                 }
             }
         }
     });
 });
+
 
 
 // funcion nueva para enviar el archivo json al formulario
