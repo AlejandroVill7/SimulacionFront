@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad Delictiva Oaxaca</title>
     <link rel="stylesheet" href="assets/css/PaginaPrueba.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -28,10 +29,6 @@
             <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito.</p>
             <p><b>Municipio más conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyección.</p>
 
-            <!-- Botón de simulación -->
-            <div class="centered-button">
-                <button onclick="fetchData()" class="custom-button">SIMULAR</button>
-            </div>
 
             <!-- Sección de botones para subir archivos -->
             <h3>Importar Archivo json</h3>
@@ -49,11 +46,23 @@
             <div id="uploadResult" style="margin-top: 20px;"></div>
             <div id="jsonContent" style="margin-top: 20px;"></div>
 
+            <!-- Botón de simulación -->
+            <div class="centered-button">
+                <button onclick="fetchData()" class="custom-button">SIMULAR</button>
+            </div>
+
             <!-- Botón para regresar -->
             <a href="Index.html" class="red-button">REGRESAR</a>
 
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
+
+            <!-- agregado para la grafica-->
+            </div>
+            <div style="margin-top: 30px;">
+              <canvas id="investigationChart" width="400" height="200"></canvas>
+            </div>
+         
         </section>
         
         <!-- Pie de página -->
@@ -87,4 +96,3 @@
     <script src="assets/js/pruebaAgarrar.js"></script>
 </body>
 </html>
-
