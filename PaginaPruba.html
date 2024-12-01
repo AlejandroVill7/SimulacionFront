@@ -47,12 +47,31 @@
             <div class="centered-button">
                 <button onclick="fetchData()" class="custom-button">SIMULAR</button>
             </div>
+
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
 
+            <!-- Grafica de la incidencia -->
             <div id="chartContainer" class="hidden">
-                <h2>GRÁFICA</h2>
+                <h3>GRÁFICA DE TASAS DE INVESTIGACION MENSUAL</h3>
                 <canvas id="investigationChart" width="50" height="20"></canvas>
+            </div>
+
+            <!-- Tabla con los nombres de los municipios con mayor incidencia -->
+            <div class="table-container">
+                <h3>TABLA DE MUNICIPIOS CON MAYOR INCIDENCIA</h3>
+                <table id="municipiosTable">
+                    <thead>
+                        <tr>
+                            <th>MESES</th>
+                            <th>DATOS REALES</th>
+                            <th>DATOS SIMULADOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Filas generadas dinámicamente -->
+                    </tbody>
+                </table>
             </div>
 
             <!-- Botón para regresar -->

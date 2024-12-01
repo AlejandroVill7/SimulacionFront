@@ -53,6 +53,44 @@ p {
     text-align: justify;
 }
 
+/* Tabla */
+.table-container {
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    background-color: #f9fef9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #c3e6cb;
+}
+
+th {
+    background-color: #4caf50;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #eaf4ea;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9fef9;
+}
+
+tbody tr:hover {
+    background-color: #c3e6cb;
+    color: #fff;
+}
+
 /* Botón de simulación */
 
 .custom-button {
