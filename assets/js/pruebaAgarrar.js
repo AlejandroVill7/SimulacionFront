@@ -209,28 +209,28 @@ const municipiosReales = [
     "Salina Cruz", "Juchitán de Zaragoza", "Puerto Escondido", 
     "Miahuatlán de Porfirio Díaz", "Tehuantepec", "Tlacolula de Matamoros", 
     "Huatulco", "Tuxtepec", "San Juan Bautista Valle Nacional"
-  ];
-  
-  const municipiosSimulados = [
+];
+
+const municipiosSimulados = [
     "Zimatlán de Álvarez", "Santa Lucía del Camino", "Santo Domingo Tehuantepec", 
     "Pinotepa Nacional", "Ejutla de Crespo", "San Pedro Mixtepec", 
     "Villa de Etla", "Santa María Huatulco", "San Blas Atempa", 
     "Ixtepec", "San Andrés Huayápam", "Villa Sola de Vega"
-  ];
-  
+];
+
   // Meses del año
-  const meses = [
+const meses = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-  ];
-  
+];
+
   // Referencia al cuerpo de la tabla
-  const tbody = document.querySelector("#municipiosTable tbody");
-  
+const tbody = document.querySelector("#municipiosTable tbody");
+
   // Generar filas dinámicamente
-  meses.forEach((mes, index) => {
+meses.forEach((mes, index) => {
     const row = document.createElement("tr");
-  
+
     // Celda de mes
     const cellMes = document.createElement("td");
     cellMes.textContent = mes;
@@ -240,12 +240,12 @@ const municipiosReales = [
     const cellMunicipioReal = document.createElement("td");
     cellMunicipioReal.textContent = municipiosReales[index];
     row.appendChild(cellMunicipioReal);
-  
+
     // Celda de municipio simulado
     const cellMunicipioSimulado = document.createElement("td");
     cellMunicipioSimulado.textContent = municipiosSimulados[index];
     row.appendChild(cellMunicipioSimulado);
-  
+
     // Agregar fila a la tabla
     tbody.appendChild(row);
-  });
+});
