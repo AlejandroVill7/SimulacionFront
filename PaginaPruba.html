@@ -33,11 +33,8 @@
             <!-- Sección de botones para subir archivos -->
             <h3>Importar Archivo json</h3>
             <form id="uploadForm">
-                <div class="form-group">
+                <div class="form-group-horizontal">
                     <input type="file" id="fileInput" name="file" accept=".json" class="custom-button" required>
-                </div>
-                <p></p>
-                <div class="form-group">
                     <button type="button" class="custom-button" id="uploadButton">Enviar archivo</button>
                 </div>
             </form>
@@ -53,7 +50,7 @@
             <!-- Espacio para mostrar resultados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
 
-            <div style="margin-top: 30px;">
+            <div id="chartContainer" class="hidden">
                 <h2>GRÁFICA</h2>
                 <canvas id="investigationChart" width="50" height="20"></canvas>
             </div>

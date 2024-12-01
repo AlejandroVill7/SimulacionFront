@@ -32,9 +32,10 @@ async function fetchData() {
         resultadoElement.innerHTML = `
             <p><strong>Mes con mayor incidencia delictiva:</strong> ${mesNombre}</p>
             <p><strong>Tasa de investigación:</strong> %${data.averageResearchRate.toFixed(2)}</p>
-            <p><strong>Municipio más conflictivo:</strong> ${data.mostLikelyMunicipality}</p>
+            <p><strong>Municipio con mayor incidencia:</strong> ${data.mostLikelyMunicipality}</p>
             <p><strong>Año:</strong> ${data.ano}</p>
         `;
+        mostrarGrafico();
     } catch (error) {
         // Manejo de errores
         console.error('Error:', error);
@@ -44,65 +45,83 @@ async function fetchData() {
 }
 
 
-//Agregado nuevo para la grafica
-// No mover, es para la grafica 
-const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-const tasasInvestigacion = [25, 30, 15, 40, 20, 25, 50, 35, 60, 45, 55, 70]; // Ejemplo de tasas para el primer dataset
-const tasasResolucion = [20, 25, 10, 35, 18, 22, 45, 30, 55, 40, 50, 65]; // Ejemplo de tasas para el segundo dataset
 
-//agregado
-// Aqui hace eso de crear la grafica, ahora con líneas y áreas coloreadas
-document.addEventListener("DOMContentLoaded", function () {
+function generarNumerosRandom(cantidad, min, max) {
+    const numeros = [];
+    for (let i = 0; i < cantidad; i++) {
+        numeros.push(Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+    return numeros;
+}
+
+let investigationChart; // Declarar la variable globalmente para actualizarla más tarde
+
+// Crear o actualizar la gráfica
+function mostrarGrafico() {
+    const chartContainer = document.getElementById("chartContainer");
+    chartContainer.classList.remove("hidden"); // Hacer visible el contenedor del gráfico
+
     const ctx = document.getElementById("investigationChart").getContext("2d");
-    const investigationChart = new Chart(ctx, {
-        type: "line", 
-        data: {
-            labels: meses, // Eje X
-            datasets: [
-                {
-                    label: "Tasa de Investigacion Actual (%)", // Primera línea
-                    data: tasasInvestigacion, // Datos para la primera línea
-                    backgroundColor: "rgba(0, 123, 255, 0.2)", // Color del área debajo de la línea
-                    borderColor: "rgb(0, 121, 107)", // Color de la línea
-                    borderWidth: 3, // Grosor de la línea
-                    fill: false // Rellenar el área debajo de la línea
-                },
-                {
-                    label: "Tasa de investigacion proyectada(%)", // Segunda línea
-                    data: tasasResolucion, // Datos para la segunda línea
-                    backgroundColor: "rgba(255, 99, 132, 0.2)", // Color del área debajo de la línea
-                    borderColor: "rgba(255, 99, 132, 1)", // Color de la línea
-                    borderWidth: 3, // Grosor de la línea
-                    fill: false // Rellenar el área debajo de la línea
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top', // Posición de la leyenda
-                },
-            },
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: "Meses", // Título del eje X
+
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const tasasInvestigacion = generarNumerosRandom(12, 10, 30);
+    const tasasResolucion = generarNumerosRandom(12, 10, 38);
+
+    // Crear o actualizar la gráfica
+    if (investigationChart) {
+        investigationChart.data.datasets[0].data = tasasInvestigacion; // Actualizar datos de investigación
+        investigationChart.data.datasets[1].data = tasasResolucion;   // Actualizar datos de resolución
+        investigationChart.update(); // Refrescar la gráfica
+    } else {
+        investigationChart = new Chart(ctx, {
+            type: "line", 
+            data: {
+                labels: meses, // Eje X
+                datasets: [
+                    {
+                        label: "Tasa de Investigación Actual (%)", // Primera línea
+                        data: tasasInvestigacion, // Datos para la primera línea
+                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
+                        borderColor: "rgb(0, 121, 107)", // Color de la línea
+                        borderWidth: 3, // Grosor de la línea
+                        fill: false // No rellenar el área debajo de la línea
+                    },
+                    {
+                        label: "Tasa de Investigación Proyectada (%)", // Segunda línea
+                        data: tasasResolucion, // Datos para la segunda línea
+                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
+                        borderColor: "rgba(255, 99, 132, 1)", // Color de la línea
+                        borderWidth: 3, // Grosor de la línea
+                        fill: false // No rellenar el área debajo de la línea
                     }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Posición de la leyenda
+                    },
                 },
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: "Tasa (%)", // Título del eje Y
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Meses", // Título del eje X
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Tasa (%)", // Título del eje Y
+                        }
                     }
                 }
             }
-        }
-    });
-});
-
+        });
+    }
+}
 
 
 // funcion nueva para enviar el archivo json al formulario
