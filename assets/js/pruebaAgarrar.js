@@ -127,70 +127,85 @@ function mostrarGrafico() {
 
 let incidenciaChart; // Variable global para la nueva gráfica
 
-// Crear o actualizar la nueva gráfica
-function mostrarGraficoIncidencia() {
-    const chartContainer2 = document.getElementById("chartContainer2");
-    chartContainer2.classList.remove("hidden"); // Hacer visible el contenedor del gráfico
+async function mostrarGraficoIncidencia() {
+    try {
+        // Llamar a la API
+        const response = await fetch('http://localhost:3200/api/data/perMonth');
+        if (!response.ok) {
+            throw new Error('Error al obtener datos de la API');
+        }
 
-    const ctx = document.getElementById("incidenciaChart").getContext("2d");
+        const data = await response.json(); // Parsear los datos
 
-    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    const incidenciaDelictivaReal = generarNumerosRandom(12, 50, 100); // Datos para la incidencia real
-    const incidenciaDelictivaSimulada = generarNumerosRandom(12, 30, 80); // Datos para la incidencia simulada
+        // Extraer valores para la gráfica
+        const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
 
-    // Crear o actualizar la gráfica
-    if (incidenciaChart) {
-        //incidenciaChart.data.datasets[0].data = incidenciaDelictivaReal; // Actualizar datos reales
-        incidenciaChart.data.datasets[1].data = incidenciaDelictivaSimulada; // Actualizar datos simulados
-        incidenciaChart.update(); // Refrescar la gráfica
-    } else {
-        incidenciaChart = new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: meses, // Eje X
-                datasets: [
-                    {
-                        label: "Incidencia Delictiva Real (%)", // Línea de datos reales
-                        data: incidenciaDelictivaReal,
-                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
-                        borderColor: "rgba(255, 0, 0, 1)", // Color rojo
-                        borderWidth: 3, // Grosor de la línea
-                        fill: false // No rellenar el área debajo de la línea
-                    },
-                    {
-                        label: "Incidencia Delictiva Simulada (%)", // Línea de datos simulados
-                        data: incidenciaDelictivaSimulada,
-                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
-                        borderColor: "rgba(0, 255, 0, 0.7)", // Color verde claro
-                        borderWidth: 3, // Grosor de la línea
-                        fill: false // No rellenar el área debajo de la línea
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top', // Posición de la leyenda
-                    },
+        const incidenciaDelictivaReal = [
+            data.january.folder,
+            data.february.folder,
+            data.march.folder,
+            data.april.folder,
+            data.may.folder,
+            data.juny.folder,
+            data.july.folder,
+            data.august.folder,
+            data.september.folder,
+            data.october.folder,
+            data.november.folder,
+            data.december.folder
+        ];
+
+        // valores simulados 
+        const incidenciaDelictivaSimulada = incidenciaDelictivaReal.map(value =>
+            Math.round(value * (Math.random() * 0.3 + 0.85)) 
+        );
+
+        // Crear el contenedor del gráfico si no existe
+        const chartContainer2 = document.getElementById("chartContainer2");
+        chartContainer2.classList.remove("hidden"); // Mostrar el contenedor
+
+        const ctx = document.getElementById("incidenciaChart").getContext("2d");
+
+        // Crear o actualizar la gráfica
+        if (incidenciaChart) {
+            incidenciaChart.data.labels = meses;
+            incidenciaChart.data.datasets[0].data = incidenciaDelictivaReal;
+            incidenciaChart.data.datasets[1].data = incidenciaDelictivaSimulada;
+            incidenciaChart.update();
+        } else {
+            incidenciaChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: meses, // Eje X
+                    datasets: [
+                        {
+                            label: "Incidencia Delictiva Real (Folders)",
+                            data: incidenciaDelictivaReal,
+                            borderColor: "rgba(255, 0, 0, 1)", // Rojo
+                            borderWidth: 3
+                        },
+                        {
+                            label: "Incidencia Delictiva Simulada (Folders)",
+                            data: incidenciaDelictivaSimulada,
+                            borderColor: "rgba(0, 255, 0, 0.7)", // Verde claro
+                            borderWidth: 3
+                        }
+                    ]
                 },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: "Meses", // Título del eje X
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: "Incidencia (%)", // Título del eje Y
-                        }
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: "Meses" } },
+                        y: { beginAtZero: true, title: { display: true, text: "Incidencia (Folders)" } }
                     }
                 }
-            }
-        });
+            });
+        }
+    } catch (error) {
+        console.error('Error al mostrar la gráfica de incidencia:', error);
     }
 }
 
@@ -251,7 +266,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
     // Crear un objeto FormData para enviar el archivo
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
-
+    //'http://localhost:3200/api/data/per-month'
     try {
         // Realizar la solicitud POST
         const response = await fetch('http://localhost:3200/api/upload/json', {
