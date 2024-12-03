@@ -7,7 +7,7 @@ async function fetchData() {
 
     try {
         // Llamada a la API
-        const response = await fetch('http://localhost:3200/api/v2/generalSimulation');
+        const response = await fetch('http://localhost:3200/api/simulation/one-year');
         if (!response.ok) {
             throw new Error('Error al obtener datos');
         }
@@ -70,7 +70,7 @@ function mostrarGrafico() {
 
     // Crear o actualizar la gráfica
     if (investigationChart) {
-        investigationChart.data.datasets[0].data = tasasInvestigacion; // Actualizar datos de investigación
+        //investigationChart.data.datasets[0].data = tasasInvestigacion; // Actualizar datos de investigación
         investigationChart.data.datasets[1].data = tasasResolucion;   // Actualizar datos de resolución
         investigationChart.update(); // Refrescar la gráfica
     } else {
@@ -140,7 +140,7 @@ function mostrarGraficoIncidencia() {
 
     // Crear o actualizar la gráfica
     if (incidenciaChart) {
-        incidenciaChart.data.datasets[0].data = incidenciaDelictivaReal; // Actualizar datos reales
+        //incidenciaChart.data.datasets[0].data = incidenciaDelictivaReal; // Actualizar datos reales
         incidenciaChart.data.datasets[1].data = incidenciaDelictivaSimulada; // Actualizar datos simulados
         incidenciaChart.update(); // Refrescar la gráfica
     } else {
@@ -254,7 +254,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
 
     try {
         // Realizar la solicitud POST
-        const response = await fetch('http://localhost:3200/api/v2/generalSimulation/upload-json', {
+        const response = await fetch('http://localhost:3200/api/upload/json', {
             method: 'POST',
             body: formData
         });
