@@ -36,7 +36,7 @@ async function fetchData() {
             <p><strong>Año:</strong> ${data.ano}</p>
         `;
         mostrarGrafico();
-        mostrarGraficoResolucion();
+        mostrarGraficoIncidencia();
     } catch (error) {
         // Manejo de errores
         console.error('Error:', error);
@@ -124,33 +124,44 @@ function mostrarGrafico() {
     }
 }
 
-let resolutionChart; // Variable global para la nueva gráfica
+
+let incidenciaChart; // Variable global para la nueva gráfica
 
 // Crear o actualizar la nueva gráfica
-function mostrarGraficoResolucion() {
+function mostrarGraficoIncidencia() {
     const chartContainer2 = document.getElementById("chartContainer2");
     chartContainer2.classList.remove("hidden"); // Hacer visible el contenedor del gráfico
 
-    const ctx = document.getElementById("resolutionChart").getContext("2d");
+    const ctx = document.getElementById("incidenciaChart").getContext("2d");
 
     const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    const tasasResolucion = generarNumerosRandom(12, 20, 50); // Generar valores para la nueva gráfica
+    const incidenciaDelictivaReal = generarNumerosRandom(12, 50, 100); // Datos para la incidencia real
+    const incidenciaDelictivaSimulada = generarNumerosRandom(12, 30, 80); // Datos para la incidencia simulada
 
     // Crear o actualizar la gráfica
-    if (resolutionChart) {
-        resolutionChart.data.datasets[0].data = tasasResolucion; // Actualizar datos de resolución
-        resolutionChart.update(); // Refrescar la gráfica
+    if (incidenciaChart) {
+        incidenciaChart.data.datasets[0].data = incidenciaDelictivaReal; // Actualizar datos reales
+        incidenciaChart.data.datasets[1].data = incidenciaDelictivaSimulada; // Actualizar datos simulados
+        incidenciaChart.update(); // Refrescar la gráfica
     } else {
-        resolutionChart = new Chart(ctx, {
+        incidenciaChart = new Chart(ctx, {
             type: "line",
             data: {
                 labels: meses, // Eje X
                 datasets: [
                     {
-                        label: "Tasa de Resolución Mensual (%)", // Línea
-                        data: tasasResolucion,
+                        label: "Incidencia Delictiva Real (%)", // Línea de datos reales
+                        data: incidenciaDelictivaReal,
                         backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
-                        borderColor: "rgba(54, 162, 235, 1)", // Nuevo color
+                        borderColor: "rgba(255, 0, 0, 1)", // Color rojo
+                        borderWidth: 3, // Grosor de la línea
+                        fill: false // No rellenar el área debajo de la línea
+                    },
+                    {
+                        label: "Incidencia Delictiva Simulada (%)", // Línea de datos simulados
+                        data: incidenciaDelictivaSimulada,
+                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
+                        borderColor: "rgba(0, 255, 0, 0.7)", // Color verde claro
                         borderWidth: 3, // Grosor de la línea
                         fill: false // No rellenar el área debajo de la línea
                     }
@@ -174,7 +185,7 @@ function mostrarGraficoResolucion() {
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: "Tasa (%)", // Título del eje Y
+                            text: "Incidencia (%)", // Título del eje Y
                         }
                     }
                 }
@@ -182,6 +193,7 @@ function mostrarGraficoResolucion() {
         });
     }
 }
+
 
 
 //agregado
