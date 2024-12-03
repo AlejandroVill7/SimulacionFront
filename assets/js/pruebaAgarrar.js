@@ -36,6 +36,7 @@ async function fetchData() {
             <p><strong>Año:</strong> ${data.ano}</p>
         `;
         mostrarGrafico();
+        mostrarGraficoResolucion();
     } catch (error) {
         // Manejo de errores
         console.error('Error:', error);
@@ -91,6 +92,65 @@ function mostrarGrafico() {
                         data: tasasResolucion, // Datos para la segunda línea
                         backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
                         borderColor: "rgba(255, 99, 132, 1)", // Color de la línea
+                        borderWidth: 3, // Grosor de la línea
+                        fill: false // No rellenar el área debajo de la línea
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Posición de la leyenda
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Meses", // Título del eje X
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Tasa (%)", // Título del eje Y
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+let resolutionChart; // Variable global para la nueva gráfica
+
+// Crear o actualizar la nueva gráfica
+function mostrarGraficoResolucion() {
+    const chartContainer2 = document.getElementById("chartContainer2");
+    chartContainer2.classList.remove("hidden"); // Hacer visible el contenedor del gráfico
+
+    const ctx = document.getElementById("resolutionChart").getContext("2d");
+
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const tasasResolucion = generarNumerosRandom(12, 20, 50); // Generar valores para la nueva gráfica
+
+    // Crear o actualizar la gráfica
+    if (resolutionChart) {
+        resolutionChart.data.datasets[0].data = tasasResolucion; // Actualizar datos de resolución
+        resolutionChart.update(); // Refrescar la gráfica
+    } else {
+        resolutionChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: meses, // Eje X
+                datasets: [
+                    {
+                        label: "Tasa de Resolución Mensual (%)", // Línea
+                        data: tasasResolucion,
+                        backgroundColor: "rgba(0, 0, 0, 0)", // Sin relleno
+                        borderColor: "rgba(54, 162, 235, 1)", // Nuevo color
                         borderWidth: 3, // Grosor de la línea
                         fill: false // No rellenar el área debajo de la línea
                     }
