@@ -431,12 +431,23 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
     }
 });
 
+//TABLA
 // API URLs
 const apiReal = 'http://localhost:3200/api/data/perMonth';
 const apiSimulada = 'http://localhost:3200/api/simulation/months';
 
 // Referencia al cuerpo de la tabla
 const tbody = document.querySelector("#municipiosTable tbody");
+
+// Función para mostrar/ocultar la tabla
+function toggleTablaMunicipios() {
+    const tableContainer = document.getElementById('tableContainer');
+    if (tableContainer.style.display === "none") {
+        tableContainer.style.display = "block"; // Muestra la tabla
+    } else {
+        tableContainer.style.display = "none"; // Oculta la tabla
+    }
+}
 
 // Llamar a las APIs y generar la tabla
 async function generarTablaMunicipios() {

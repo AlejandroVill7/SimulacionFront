@@ -68,7 +68,7 @@
             </div>
 
             <!-- Tabla con los nombres de los municipios con mayor incidencia -->
-            <div class="table-container">
+            <div class="table-container" id="tableContainer" style="display:none;">
                 <h3>TABLA DE MUNICIPIOS CON MAYOR INCIDENCIA</h3>
                 <table id="municipiosTable">
                     <thead>
@@ -83,7 +83,9 @@
                     </tbody>
                 </table>
             </div>
-
+            <p></p>
+            <!-- Botón para simular y mostrar la tabla -->
+            <button onclick="toggleTablaMunicipios()" class="custom-button">Mostrar/Ocultar Tabla de Municipios</button>
             <!-- Botón para regresar -->
             <a href="Index.html" class="red-button">REGRESAR</a>
 
