@@ -105,7 +105,13 @@ tbody tr:hover {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+}
 
+#cambio {
+    text-align: left; /* O cualquier otro valor que desees */
+}
 
 .custom-button:hover {
     background-color: #004d40;
@@ -116,6 +122,14 @@ tbody tr:hover {
     margin-top: 15px;
     border-radius: 5px;
     border: 1px solid #00796b;
+    text-align: center;
+}
+.result-boxreal {
+    background-color: #f2e0e0;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #7a0000;
     text-align: center;
 }
 

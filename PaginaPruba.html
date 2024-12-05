@@ -11,27 +11,26 @@
     <div class="container">
         <!-- Encabezado -->
         <header>
-            <h1 id="cambio">DATOS DELICTIVOS</h1>
+            <h1>DATOS DELICTIVOS</h1>
         </header>
         
         <!-- Contenido principal -->
         <section class="content">
             <p>
-                Gracias a los informes brindados por la fiscalía general del estado de Oaxaca (FGEO), 
-                obtuvimos la incidencia delictiva estatal que podrás consultar de manera sencilla para 
-                que puedas estar informado y al tanto de lo que sucede en el estado.
+                Esta plataforma permite a usuarios explorar patrones históricos de criminalidad, identificar los municipios y meses con mayor riesgo, y proyectar escenarios futuros mediante el método de Monte Carlo. Para utilizar esta herramienta, es necesario cargar un archivo en formato <code>.json</code> con datos delictivos históricos. Estos datos pueden descargarse fácilmente desde las herramientas disponibles en el sitio oficial de la <a href="https://delitosmexico.onc.org.mx/descargar" target="_blank">ONC Delitos México</a>. Con esta información, buscamos proporcionar a las autoridades y al público en general un apoyo valioso para la planificación de políticas de seguridad y la prevención del delito en nuestro estado.
             </p>
             <p>
-                Recuerda que podrás denunciar los delitos que se hayan cometido a tu alrededor. 
-                Solo necesitas llamar a las autoridades competentes para hacer lo correcto.
+                <b>Es importante que recuerdes que puedes denunciar cualquier delito que presencies o tengas conocimiento. Tu acción puede marcar la diferencia en la seguridad de tu comunidad. 
+                Para hacerlo, simplemente contacta a las autoridades competentes y sigue el proceso adecuado para contribuir a la prevención y combate del delito.</b>
             </p>
-            <p><b>El mes con mayor incidencia:</b> Este es el mes proyectado con mayor incidencia delictiva.</p>
-            <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito.</p>
-            <p><b>Municipio más conflictivo:</b> Se refiere al municipio más peligroso acorde a la proyección.</p>
+            <p></p>
+            <p><b>El mes con mayor incidencia delictiva:</b> Este es el mes proyectado con mayor incidencia delictiva basandose en el año ingresado o el simulado. Basados en los datos anuales</p>
+            <p><b>Tasa de investigación:</b> Porcentaje de investigación de cada delito. Delitos a los que se les abre una carpeta de investigación.</p>
+            <p><b>Municipio con mayor incidencia:</b> Se refiere al municipio más peligroso acorde a la proyección y a los que se les recomienda implementar las recomiendas de seguridad.</p>
 
 
             <!-- Sección de botones para subir archivos -->
-            <h3>Importar Archivo json</h3>
+            <h3 id="cambio">Importar Archivo json</h3>
             <form id="uploadForm">
                 <div class="form-group-horizontal">
                     <input type="file" id="fileInput" name="file" accept=".json" class="custom-button" required>
@@ -49,8 +48,12 @@
                 <h3>DATOS SIMULADOS POR AÑO</h3>
             </div>
 
-            <!-- Espacio para mostrar resultados -->
+            <!-- Espacio para mostrar resultados simulados -->
             <div id="resultado" class="result-box">Información no cargada aún</div>
+
+            <!-- Espacio para mostrar resultados reales -->
+            <h3>DATOS REALES POR AÑO</h3>
+            <div id="resultadoReal" class="result-boxreal">Información no cargada aún</div>
             
             <!-- Grafica de la incidencia -->
             <div id="chartContainer2" class="hidden">

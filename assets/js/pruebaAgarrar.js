@@ -44,15 +44,108 @@ async function fetchData() {
         resultadoElement.innerHTML = `
             <p><strong>Mes con mayor incidencia delictiva:</strong> ${mesMayorIncidencia} (${valorMayorIncidencia} carpetas)</p>
             <p><strong>Mes con mayor tasa:</strong> ${mesMayorTasa} (${valorMayorTasa.toFixed(2)}%)</p>
-            <p><strong>Municipio más frecuente en la tabla:</strong> ${municipioMasFrecuente}</p>
+            <p><strong>Municipio con más incidencia:</strong> ${municipioMasFrecuente}</p>
         `;
     } catch (error) {
         // Manejo de errores
         console.error('Error:', error);
-        cambioElement.textContent = 'Ocurrió un error al cargar los datos.';
+    }
+    const resultadoRealElement = document.getElementById('resultadoReal');
+
+    // Cambiar texto mientras se cargan datos
+    resultadoRealElement.textContent = 'Cargando...';
+
+    try {
+        // Llamar a la API para obtener los datos reales
+        const responseReal = await fetch('http://localhost:3200/api/data/perMonth');
+        if (!responseReal.ok) {
+            throw new Error('Error al obtener datos reales de la API');
+        }
+
+        const dataReal = await responseReal.json(); // Parsear los datos reales
+
+        // Extraer los meses y valores correspondientes
+        const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        // Encontrar el mes con mayor incidencia
+        const incidenciaData = [
+            dataReal.january.folder,
+            dataReal.february.folder,
+            dataReal.march.folder,
+            dataReal.april.folder,
+            dataReal.may.folder,
+            dataReal.juny.folder,
+            dataReal.july.folder,
+            dataReal.august.folder,
+            dataReal.september.folder,
+            dataReal.october.folder,
+            dataReal.november.folder,
+            dataReal.december.folder
+        ];
+
+        const maxIncidenciaIndex = incidenciaData.indexOf(Math.max(...incidenciaData));
+        const mesMayorIncidencia = meses[maxIncidenciaIndex];
+        const valorMayorIncidencia = incidenciaData[maxIncidenciaIndex];
+
+        // Encontrar el mes con mayor tasa
+        const tasaData = [
+            dataReal.january.tasa,
+            dataReal.february.tasa,
+            dataReal.march.tasa,
+            dataReal.april.tasa,
+            dataReal.may.tasa,
+            dataReal.juny.tasa,
+            dataReal.july.tasa,
+            dataReal.august.tasa,
+            dataReal.september.tasa,
+            dataReal.october.tasa,
+            dataReal.november.tasa,
+            dataReal.december.tasa
+        ];
+
+        const maxTasaIndex = tasaData.indexOf(Math.max(...tasaData));
+        const mesMayorTasa = meses[maxTasaIndex];
+        const valorMayorTasa = tasaData[maxTasaIndex];
+
+        // Encontrar el municipio más repetido
+        const municipios = [
+            dataReal.january.mostLikelyMunicipality,
+            dataReal.february.mostLikelyMunicipality,
+            dataReal.march.mostLikelyMunicipality,
+            dataReal.april.mostLikelyMunicipality,
+            dataReal.may.mostLikelyMunicipality,
+            dataReal.juny.mostLikelyMunicipality,
+            dataReal.july.mostLikelyMunicipality,
+            dataReal.august.mostLikelyMunicipality,
+            dataReal.september.mostLikelyMunicipality,
+            dataReal.october.mostLikelyMunicipality,
+            dataReal.november.mostLikelyMunicipality,
+            dataReal.december.mostLikelyMunicipality
+        ];
+
+        const municipioMasRepetido = municipios.reduce((acc, municipio) => {
+            acc[municipio] = (acc[municipio] || 0) + 1;
+            return acc;
+        }, {});
+
+        const municipioMasFrecuente = Object.entries(municipioMasRepetido).reduce((acc, [municipio, count]) => {
+            return count > acc[1] ? [municipio, count] : acc;
+        }, ["", 0])[0];
+
+        // Mostrar los resultados en la interfaz
+        resultadoRealElement.innerHTML = `
+            <p><strong>Mes con mayor incidencia delictiva:</strong> ${mesMayorIncidencia} (${valorMayorIncidencia} carpetas)</p>
+            <p><strong>Mes con mayor tasa:</strong> ${mesMayorTasa} (${valorMayorTasa.toFixed(2)}%)</p>
+            <p><strong>Municipio con más incidencia:</strong> ${municipioMasFrecuente}</p>
+        `;
+    } catch (error) {
+        // Manejo de errores
+        console.error('Error al cargar los datos reales:', error);
     }
 }
-
 
 //GRAFICA DE LAS TASAS DE INVESTIGACIÓN -ABAJO
 let investigationChart; // Declarar la variable globalmente para actualizarla más tarde
@@ -273,7 +366,6 @@ async function mostrarGraficoIncidencia() {
     }
 }
 
-
 //agregado
 document.getElementById("uploadButton").addEventListener("click", function () {
     const fileInput = document.getElementById("fileInput");
@@ -294,13 +386,12 @@ document.getElementById("uploadButton").addEventListener("click", function () {
 
             document.getElementById("uploadResult").textContent = "Archivo cargado y gráfico actualizado.";
         } catch (error) {
-            document.getElementById("uploadResult").textContent = "Error al procesar el archivo JSON.";
+            document.getElementById("uploadResult").textContent = "Cargando...";
         }
     };
 
     reader.readAsText(file);
 });
-
 
 // funcion nueva para enviar el archivo json al formulario
 document.getElementById('uploadButton').addEventListener('click', async () => {
