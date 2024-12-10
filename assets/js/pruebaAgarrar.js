@@ -57,7 +57,7 @@ async function fetchData() {
 
     try {
         // Llamar a la API para obtener los datos reales
-        const responseReal = await fetch('http://localhost:3200/api/data/perMonth');
+        const responseReal = await fetch('http://localhost:3200/api/data/comparate');
         if (!responseReal.ok) {
             throw new Error('Error al obtener datos reales de la API');
         }
@@ -158,7 +158,7 @@ async function mostrarGrafico() {
         const ctx = document.getElementById("investigationChart").getContext("2d");
 
         // Llamar a la API para los datos reales
-        const responseReal = await fetch('http://localhost:3200/api/data/perMonth');
+        const responseReal = await fetch('http://localhost:3200/api/data/comparate');
         if (!responseReal.ok) {
             throw new Error('Error al obtener datos reales de la API');
         }
@@ -271,7 +271,7 @@ let incidenciaChart; // Variable global para la nueva gráfica
 async function mostrarGraficoIncidencia() {
     try {
         // Llamar a la API para los datos reales
-        const responseReal = await fetch('http://localhost:3200/api/data/perMonth');
+        const responseReal = await fetch('http://localhost:3200/api/data/comparate');
         if (!responseReal.ok) {
             throw new Error('Error al obtener datos reales de la API');
         }
@@ -433,7 +433,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
 
 //TABLA
 // API URLs
-const apiReal = 'http://localhost:3200/api/data/perMonth';
+const apiReal = 'http://localhost:3200/api/data/comparate';
 const apiSimulada = 'http://localhost:3200/api/simulation/months';
 
 // Referencia al cuerpo de la tabla
